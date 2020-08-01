@@ -13,35 +13,40 @@ class NibblesController extends Controller
 {
     public function index()
     {
-        $content = request()->getContent();
-        $json = json_decode($content, true) ?? [];
-        $beverageQuery = AlcoholicBeverage::query();
-        $beverage = $beverageQuery->where('id', $json['beverage_id'])->first();
+        $request = request();
+        // or whereでいい感じにする
+        $res = Nibble::all();
+        return response($res, 200);
 
-        $q = DB::table('Nibbles');
-        if((bool)$beverage->sweet_flg) {
-            $q->orwhere('sweet_flg', $beverage->sweet_flg);
-        }
-        if((bool)$beverage->acid_flg) {
-            $q->orWhere('acid_flg', $beverage->acid_flg);
-        }
-        if((bool)$beverage->salt_flg) {
-            $q->orWhere('salt_flg', $beverage->salt_flg);
-        }
-        if((bool)$beverage->bitter_flg) {
-            $q->orWhere('bitter_flg', $beverage->bitter_flg);
-        }
-        if((bool)$beverage->spice_flg) {
-            $q->orWhere('spice_flg', $beverage->spice_flg);
-        }
-        if((bool)$beverage->astringency_flg) {
-            $q->orWhere('astringency_flg', $beverage->astringency_flg);
-        }
-        if((bool)$beverage->umami_flg) {
-            $q->orWhere('umami_flg', $beverage->umami_flg);
-        }
+        // $content = request()->getContent();
+        // $json = json_decode($content, true) ?? [];
+        // $beverageQuery = AlcoholicBeverage::query();
+        // $beverage = $beverageQuery->where('id', $json['beverage_id'])->first();
 
-        return $q->get();
+        // $q = DB::table('Nibbles');
+        // if((bool)$beverage->sweet_flg) {
+        //     $q->orwhere('sweet_flg', $beverage->sweet_flg);
+        // }
+        // if((bool)$beverage->acid_flg) {
+        //     $q->orWhere('acid_flg', $beverage->acid_flg);
+        // }
+        // if((bool)$beverage->salt_flg) {
+        //     $q->orWhere('salt_flg', $beverage->salt_flg);
+        // }
+        // if((bool)$beverage->bitter_flg) {
+        //     $q->orWhere('bitter_flg', $beverage->bitter_flg);
+        // }
+        // if((bool)$beverage->spice_flg) {
+        //     $q->orWhere('spice_flg', $beverage->spice_flg);
+        // }
+        // if((bool)$beverage->astringency_flg) {
+        //     $q->orWhere('astringency_flg', $beverage->astringency_flg);
+        // }
+        // if((bool)$beverage->umami_flg) {
+        //     $q->orWhere('umami_flg', $beverage->umami_flg);
+        // }
+
+        // return $q->get();
     }
 
     public function result()
