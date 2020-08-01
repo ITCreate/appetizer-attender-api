@@ -16,7 +16,8 @@ class CreateMatchFusionCommentsTable extends Migration
         Schema::create('match_fusion_comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('match_fusion_id');
-            $table->text('comment');
+            $table->text('review')->comment('レビュー');
+            $table->integer('star')->comment("星の数");
             $table->timestamps();
         });
     }
