@@ -13,35 +13,44 @@ class NibblesController extends Controller
 {
     public function index()
     {
-         $content = request()->getContent();
-         $json = json_decode($content, true) ?? [];
-         $beverageQuery = AlcoholicBeverage::query();
-         $beverage = $beverageQuery->where('id', $json['beverage_id'])->first();
+        $alcoholicBeverage = json_decode(request()->alcoholicBeverage);
 
-         $q = DB::table('Nibbles');
-         if((bool)$beverage->sweet_flg) {
-             $q->orwhere('sweet_flg', $beverage->sweet_flg);
-         }
-         if((bool)$beverage->acid_flg) {
-             $q->orWhere('acid_flg', $beverage->acid_flg);
-         }
-         if((bool)$beverage->salt_flg) {
-             $q->orWhere('salt_flg', $beverage->salt_flg);
-         }
-         if((bool)$beverage->bitter_flg) {
-             $q->orWhere('bitter_flg', $beverage->bitter_flg);
-         }
-         if((bool)$beverage->spice_flg) {
-             $q->orWhere('spice_flg', $beverage->spice_flg);
-         }
-         if((bool)$beverage->astringency_flg) {
-             $q->orWhere('astringency_flg', $beverage->astringency_flg);
-         }
-         if((bool)$beverage->umami_flg) {
-             $q->orWhere('umami_flg', $beverage->umami_flg);
-         }
+        if (collect(request())->isEmpty()) {
+            return response([], 200);
+        }
 
-         return $q->get();
+        $nibbles = Nibble::query();
+        $isFirstWhere = true;
+        if ($alcoholicBeverage->sweet_flg) {
+            $isFirstWhere ? $nibbles->where('sweet_flg', true) : $nibbles->orWhere('sweet_flg', true);
+            $isFirstWhere= false;
+        }
+        if ($alcoholicBeverage->acid_flg) {
+            $isFirstWhere ? $nibbles->where('acid_flg', true) : $nibbles->orWhere('acid_flg', true);
+            $isFirstWhere= false;
+        }
+        if ($alcoholicBeverage->salt_flg) {
+            $isFirstWhere ? $nibbles->where('salt_flg', true) : $nibbles->orWhere('salt_flg', true);
+            $isFirstWhere= false;
+        }
+        if ($alcoholicBeverage->bitter_flg) {
+            $isFirstWhere ? $nibbles->where('bitter_flg', true) : $nibbles->orWhere('bitter_flg', true);
+            $isFirstWhere= false;
+        }
+        if ($alcoholicBeverage->spice_flg) {
+            $isFirstWhere ? $nibbles->where('spice_flg', true) : $nibbles->orWhere('spice_flg', true);
+            $isFirstWhere= false;
+        }
+        if ($alcoholicBeverage->astringency_flg) {
+            $isFirstWhere ? $nibbles->where('astringency_flg', true) : $nibbles->orWhere('astringency_flg', true);
+            $isFirstWhere= false;
+        }
+        if ($alcoholicBeverage->umami_flg) {
+            $isFirstWhere ? $nibbles->where('umami_flg', true) : $nibbles->orWhere('umami_flg', true);
+            $isFirstWhere= false;
+        }
+        $nibbles = $nibbles->get();
+        return response($nibbles, 200);
     }
 
     public function result()
