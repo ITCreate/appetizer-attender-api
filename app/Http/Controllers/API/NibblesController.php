@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\AlcoholicBeverage;
+use App\Models\AlcoholicBeverage;
+use App\Models\Nibble;
 use App\Http\Controllers\Controller;
-use App\Nibble;
-use Illuminate\Http\Request;
 
 class NibblesController extends Controller
 {
@@ -15,8 +14,9 @@ class NibblesController extends Controller
      * @param Request $request
      * @return void
      */
-    public function select(Request $request)
+    public function select()
     {
+        $request = request();
     }
 
     /**
@@ -25,8 +25,8 @@ class NibblesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function result(Request $request)
+    public function result()
     {
-        //
+        $request = request();
     }
 }

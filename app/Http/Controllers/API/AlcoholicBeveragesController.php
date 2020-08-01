@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\AlcoholicBeverage;
+use App\Models\AlcoholicBeverage;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class AlcoholicBeveragesController extends Controller
 {
@@ -15,6 +14,6 @@ class AlcoholicBeveragesController extends Controller
      */
     public function index()
     {
-        return AlcoholicBeverage::all();
+        return AlcoholicBeverage::select(['id', 'name', 'image'])->get();
     }
 }
