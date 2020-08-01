@@ -21,33 +21,12 @@ class NibblesController extends Controller
 
         $nibbles = Nibble::query();
         $isFirstWhere = true;
-        if ($alcoholicBeverage->sweet_flg) {
-            $isFirstWhere ? $nibbles->where('sweet_flg', true) : $nibbles->orWhere('sweet_flg', true);
-            $isFirstWhere= false;
-        }
-        if ($alcoholicBeverage->acid_flg) {
-            $isFirstWhere ? $nibbles->where('acid_flg', true) : $nibbles->orWhere('acid_flg', true);
-            $isFirstWhere= false;
-        }
-        if ($alcoholicBeverage->salt_flg) {
-            $isFirstWhere ? $nibbles->where('salt_flg', true) : $nibbles->orWhere('salt_flg', true);
-            $isFirstWhere= false;
-        }
-        if ($alcoholicBeverage->bitter_flg) {
-            $isFirstWhere ? $nibbles->where('bitter_flg', true) : $nibbles->orWhere('bitter_flg', true);
-            $isFirstWhere= false;
-        }
-        if ($alcoholicBeverage->spice_flg) {
-            $isFirstWhere ? $nibbles->where('spice_flg', true) : $nibbles->orWhere('spice_flg', true);
-            $isFirstWhere= false;
-        }
-        if ($alcoholicBeverage->astringency_flg) {
-            $isFirstWhere ? $nibbles->where('astringency_flg', true) : $nibbles->orWhere('astringency_flg', true);
-            $isFirstWhere= false;
-        }
-        if ($alcoholicBeverage->umami_flg) {
-            $isFirstWhere ? $nibbles->where('umami_flg', true) : $nibbles->orWhere('umami_flg', true);
-            $isFirstWhere= false;
+        $flags = ['sweet_flg', 'acid_flg', 'salt_flg', 'bitter_flg', 'spice_flg', 'astringency_flg', 'umami_flg'];
+        foreach ($flags as $flg) {
+            if ($alcoholicBeverage->$flg) {
+                $isFirstWhere ? $nibbles->where($flg, true) : $nibbles->orWhere($flg, true);
+                $isFirstWhere = false;
+            }
         }
         $nibbles = $nibbles->get();
         return response($nibbles, 200);
