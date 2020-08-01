@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\API;
 
-use App\AlcoholicBeverage;
+use App\Models\AlcoholicBeverage;
+use App\Models\Nibble;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class NibblesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function select(Request $request)
+    public function index()
     {
+        // $request = request();
+        // // or whereでいい感じにする
+        // $res = Nibble::all();
+        // return response($res, 200);
+
         $beverageId = $request->get('beverage_id');
         $beverageQuery = AlcoholicBeverage::query();
         $beverage = $beverageQuery->where('id', $beverageId)->first();
@@ -48,14 +49,9 @@ class NibblesController extends Controller
         return $q->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function result(Request $request)
+    public function result()
     {
-        //
+        $request = request();
+        return response([], 200);
     }
 }
