@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\AlcoholicBeverage;
+use App\Models\Nibble;
 use App\Models\MatchFusion;
 use App\Http\Controllers\Controller;
 
