@@ -14,7 +14,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
     {
         AlcoholicBeverage::create([
             'name'            => 'ハイボール',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/highball.jpg'),
             'sweet_flg'       => true,
             'acid_flg'        => true,
             'salt_flg'        => true,
@@ -26,7 +26,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => 'ビール',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/beer.jpg'),
             'sweet_flg'       => false,
             'acid_flg'        => true,
             'salt_flg'        => true,
@@ -38,7 +38,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => 'ウイスキー',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/whiskey.jpg'),
             'sweet_flg'       => true,
             'acid_flg'        => true,
             'salt_flg'        => true,
@@ -50,7 +50,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => 'チューハイ',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/chu_hi.jpg'),
             'sweet_flg'       => false,
             'acid_flg'        => true,
             'salt_flg'        => true,
@@ -62,7 +62,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => '梅酒',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/plum_wine.jpg'),
             'sweet_flg'       => false,
             'acid_flg'        => true,
             'salt_flg'        => true,
@@ -74,7 +74,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => 'カクテル',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/cocktails.jpg'),
             'sweet_flg'       => false,
             'acid_flg'        => false,
             'salt_flg'        => true,
@@ -87,7 +87,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => 'ワイン',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/wine.jpg'),
             'sweet_flg'       => false,
             'acid_flg'        => true,
             'salt_flg'        => true,
@@ -99,7 +99,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => '焼酎',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/shochu.jpg'),
             'sweet_flg'       => false,
             'acid_flg'        => true,
             'salt_flg'        => true,
@@ -111,7 +111,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => '日本酒',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/sake.jpg'),
             'sweet_flg'       => false,
             'acid_flg'        => true,
             'salt_flg'        => true,
@@ -123,7 +123,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            => '果実酒',
-            'image'           => 'http://placehold.it/300x500',
+            'image'           => asset('storage/alcoholicBeverages/fruit_wine.jpg'),
             'sweet_flg'       => false,
             'acid_flg'        => true,
             'salt_flg'        => true,
