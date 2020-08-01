@@ -8,25 +8,17 @@ use App\Http\Controllers\Controller;
 
 class NibblesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function select()
+    public function index()
     {
         $request = request();
+        // or whereでいい感じにする
+        $res = Nibble::all();
+        return response($res, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function result()
     {
         $request = request();
+        return response([], 200);
     }
 }

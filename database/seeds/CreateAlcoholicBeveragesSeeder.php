@@ -14,7 +14,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
     {
         AlcoholicBeverage::create([
             'name'            =>  '日本酒',
-            'image'           =>  '.',
+            'image'           =>  'http://placehold.it/300x500',
             'sweet_flg'       => true,
             'acid_flg'        => false,
             'salt_flg'        => false,
@@ -26,7 +26,7 @@ class CreateAlcoholicBeveragesSeeder extends Seeder
 
         AlcoholicBeverage::create([
             'name'            =>  'ビール',
-            'image'           =>  '.',
+            'image'           =>  'http://placehold.it/300x500',
             'sweet_flg'       => true,
             'acid_flg'        => false,
             'salt_flg'        => false,
