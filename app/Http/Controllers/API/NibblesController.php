@@ -52,8 +52,8 @@ class NibblesController extends Controller
             return response([], 200);
         }
 
-        $matchFusion = new MatchFusion();
-        $matchFusion->alcoholic_beverages_id = $json['alcoholic_beverage_id'];
+        $newMatchFusion = new MatchFusion();
+        $newMatchFusion->alcoholic_beverage_id = $json['alcoholic_beverage_id'];
 
         foreach ($json['select_nibbles'] as $niddle) {
             $selectNiddleIds[] = $niddle['id'];
@@ -69,12 +69,23 @@ class NibblesController extends Controller
         }
         array_values($selectNiddleIds);
 
-        $matchFusion->one_nibble_id = $match[0];
-        $matchFusion->two_nibble_id = $match[1];
+        $newMatchFusion->one_nibble_id = $match[0];
+        $newMatchFusion->two_nibble_id = $match[1];
 
-        $matchFusion->save();
+        $existMatchFusion = DB::table('match_fusions')
+            ->where('alcoholic_beverage_id', $newMatchFusion->alcoholic_beverage_id)
+            ->where('one_nibble_id', $newMatchFusion->one_nibble_id)
+            ->where('two_nibble_id', $newMatchFusion->two_nibble_id)
+            ->first();
 
-        $alcoholicBeverages = DB::table('alcoholic_beverages')->find($matchFusion->alcoholic_beverages_id);
+        if (empty($existMatchFusion)) {
+            $newMatchFusion->save();
+            $matchFusion = $newMatchFusion;
+        } else {
+            $matchFusion = $existMatchFusion;
+        }
+
+        $alcoholicBeverages = DB::table('alcoholic_beverages')->find($matchFusion->alcoholic_beverage_id);
 
         $oneNiddle = DB::table('Nibbles')->find($matchFusion->one_nibble_id);
         $twoNiddle = DB::table('Nibbles')->find($matchFusion->two_nibble_id);
