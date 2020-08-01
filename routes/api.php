@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// お酒の一覧を返す
+Route::get('alcoholic_beverages', 'API\AlcoholicBeveragesController@index');
+
+// お酒のIDを元に適したおつまみの一覧を返す
+Route::post('select_nibbles', 'API\NibblesController@select');
+
+// スワイプした結果のおつまみIDを受け取って、その中で(一旦)ランダムに2つを選び返す 拡張・組み合わせに対するレビューや評価を返す
+Route::post('nibbles/result', 'API\NibblesController@result');
