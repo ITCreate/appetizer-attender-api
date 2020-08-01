@@ -16,25 +16,25 @@ class CreateNibblesSeeder extends Seeder
             'name'            =>  'えだまめ',
             'image'           =>  'http://placehold.it/300x500',
             'comment'         => 'アテと言ったらこれ',
-            'sweet_flg'       => true,
+            'sweet_flg'       => false,
             'acid_flg'        => false,
-            'salt_flg'        => false,
+            'salt_flg'        => true,
             'bitter_flg'      => false,
             'spice_flg'       => false,
-            'astringency_flg' => true,
-            'umami_flg'       => true,
+            'astringency_flg' => false,
+            'umami_flg'       => false,
         ]);
 
         Nibble::create([
             'name'            =>  'からあげ',
             'image'           =>  'http://placehold.it/300x500',
             'comment'         =>  'うまい',
-            'sweet_flg'       => true,
+            'sweet_flg'       => false,
             'acid_flg'        => false,
             'salt_flg'        => false,
             'bitter_flg'      => false,
             'spice_flg'       => false,
-            'astringency_flg' => true,
+            'astringency_flg' => false,
             'umami_flg'       => true,
         ]);
 
@@ -42,12 +42,12 @@ class CreateNibblesSeeder extends Seeder
             'name'            =>  '塩竜田揚げ',
             'image'           =>  'http://placehold.it/300x500',
             'comment'         =>  'なんかしょっぱうまい',
-            'sweet_flg'       => true,
+            'sweet_flg'       => false,
             'acid_flg'        => false,
-            'salt_flg'        => false,
+            'salt_flg'        => true,
             'bitter_flg'      => false,
             'spice_flg'       => false,
-            'astringency_flg' => true,
+            'astringency_flg' => false,
             'umami_flg'       => true,
         ]);
     }
