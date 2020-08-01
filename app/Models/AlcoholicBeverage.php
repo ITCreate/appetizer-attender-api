@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AlcoholicBeverage extends Model
 {
+    protected $hidden = ['created_at', 'updated_at', ];
+
     protected $casts = [
         'sweet_flg'       => 'boolean',
         'acid_flg'        => 'boolean',

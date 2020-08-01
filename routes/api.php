@@ -20,4 +20,4 @@ Route::get('alcoholic_beverages', 'AlcoholicBeveragesController@index');
 Route::get('nibbles', 'NibblesController@index');
 
 // スワイプした結果のおつまみIDを受け取って、その中で(一旦)ランダムに2つを選び返す 拡張・組み合わせに対するレビューや評価を返す
-Route::post('nibbles/result', 'NibblesController@result');
+Route::get('nibbles/result', 'NibblesController@result');

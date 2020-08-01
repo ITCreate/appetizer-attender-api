@@ -9,7 +9,7 @@ class AlcoholicBeveragesController extends Controller
 {
     public function index()
     {
-        $res = AlcoholicBeverage::select(['id', 'name', 'image'])->get();
+        $res = AlcoholicBeverage::all();
         return response($res, 200);
     }
 }
