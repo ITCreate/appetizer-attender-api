@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\AlcoholicBeverage;
-use App\Models\Nibble;
+use App\Models\MatchFusion;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class NibblesController extends Controller
@@ -46,7 +45,69 @@ class NibblesController extends Controller
 
     public function result()
     {
-        $request = request();
-        return response([], 200);
+        $content = request()->getContent();
+        $json = json_decode($content, true) ?? [];
+
+        if (count($json['select_nibbles'])<2) {
+            return response([], 200);
+        }
+
+        $matchFusion = new MatchFusion();
+        $matchFusion->alcoholic_beverages_id = $json['alcoholic_beverage_id'];
+
+        foreach ($json['select_nibbles'] as $niddle) {
+            $selectNiddleIds[] = $niddle['id'];
+        }
+
+        $match = [];
+        $keys = array_rand($selectNiddleIds, 2);
+        foreach ($keys as $key) {
+            $match[] = $selectNiddleIds[$key];
+        }
+        foreach ($keys as $key) {
+            unset($selectNiddleIds[$key]);
+        }
+        array_values($selectNiddleIds);
+
+        $matchFusion->one_nibble_id = $match[0];
+        $matchFusion->two_nibble_id = $match[1];
+
+        $matchFusion->save();
+
+        $alcoholicBeverages = DB::table('alcoholic_beverages')->find($matchFusion->alcoholic_beverages_id);
+
+        $oneNiddle = DB::table('Nibbles')->find($matchFusion->one_nibble_id);
+        $twoNiddle = DB::table('Nibbles')->find($matchFusion->two_nibble_id);
+
+        $selectNiddles = DB::table('Nibbles')->whereIn('id', $selectNiddleIds)->get();
+
+        $candidates = [];
+        foreach ($selectNiddles as $selectNiddle) {
+            $candidates[] = [
+                'name' => $selectNiddle->name,
+                'image' => $selectNiddle->image
+            ];
+        }
+
+        $resultArray = [
+            'match' => [
+                'id' => $matchFusion->id,
+                'alcoholic_beverage' => [
+                    'name' => $alcoholicBeverages->name,
+                    'image' => $alcoholicBeverages->image
+                ],
+                'one_nibble' => [
+                    'name' => $oneNiddle->name,
+                    'image' => $oneNiddle->image
+                ],
+                'two_nibble' => [
+                    'name' => $twoNiddle->name,
+                    'image' => $twoNiddle->image
+                ]
+            ],
+            'candidates' => $candidates
+        ];
+
+        return response(json_encode($resultArray), 200);
     }
 }
